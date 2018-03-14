@@ -47,15 +47,10 @@ hide-on-blur |  | boolean | false | |点击遮罩层是否关闭弹出层|
 
 ## 事件
 
-### on-show
-
 事件名称 | 说明 | 回调参数 | 描述
-on-show |  | | on-show
-
-### on-hide
-
-事件名称 | 说明 | 回调参数 | 描述
-on-hide |  | | on-hide
+--- | --- | --- | --- 
+on-show |  |  | on-show
+on-hide |  |  | on-hide
 
 ## 更新日志
 
