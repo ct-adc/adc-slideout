@@ -40,7 +40,7 @@ import slideout from 'ct-adc-slideout'
 
 参数 | 说明 | 类型 | 默认值 | 可选值 | 描述 |
 --- | --- | --- | --- | ---- | ---
-value |  | boolean | false | | 是否显示弹出层，用v-model绑定|
+value | 是否显示 | boolean | false | | 是否显示弹出层，用v-model绑定|
 title | 标题 | string | 标题 | | |
 width | 宽度 | string | 50% | | |
 hide-on-blur |  | boolean | false | |点击遮罩层是否关闭弹出层|
@@ -49,8 +49,8 @@ hide-on-blur |  | boolean | false | |点击遮罩层是否关闭弹出层|
 
 事件名称 | 说明 | 回调参数 | 描述
 --- | --- | --- | --- 
-on-show |  |  | on-show
-on-hide |  |  | on-hide
+on-show |  |  | 显示时触发的事件
+on-hide |  |  | 隐藏时触发的事件
 
 ## 更新日志
 

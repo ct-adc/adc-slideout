@@ -1,6 +1,6 @@
 {
-  "name": "slide-out",
-  "version": "1.0.0",
+  "name": "ct-adc-slideout",
+  "version": "1.0.1",
   "description": "右侧滑出组件",
   "author": "马潮 <632859571@qq.com>",
   "private": false,
@@ -62,5 +62,14 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ct-adc/adc-slideout.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ct-adc/adc-slideout/issues"
+  },
+  "homepage": "https://github.com/ct-adc/adc-slideout#readme"
 }
