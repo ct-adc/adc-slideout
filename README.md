@@ -6,6 +6,8 @@
 
 无
 
+马上有了！
+
 ## 使用
 
 从npm安装ct-adc-slideout
