@@ -43,6 +43,7 @@ import slideout from 'ct-adc-slideout'
 参数 | 说明 | 类型 | 默认值 | 可选值 | 描述 |
 --- | --- | --- | --- | ---- | ---
 value | 是否显示 | boolean | false | | 是否显示弹出层，用v-model绑定|
+index | 层级 | number | 1000 | | 遮罩层的z-index|
 title | 标题 | string | 标题 | | |
 width | 宽度 | string | 50% | | |
 hide-on-blur |  | boolean | false | |点击遮罩层是否关闭弹出层|
