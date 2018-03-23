@@ -1,10 +1,10 @@
 <template>
 	<div>
 		<transition name="fade">
-			<div class="mask" @click="clickMask" v-show="isShow"></div>
+			<div class="mask" @click="clickMask" v-show="isShow" :style="{'z-index': maskIndex}"></div>
 		</transition>
 		<transition name="slide">
-			<div class="main" v-show="isShow" :style="{width: width}">
+			<div class="main" v-show="isShow" :style="{'width': width, 'z-index': bodyIndex}">
 				<div class="head clearfix">
 					<div class="pull-left title-text">{{title}}</div>
 					<button class="btn btn-default pull-right" @click="hide">取消</button>
@@ -25,7 +25,19 @@
             	isShow: this.value
             };
         },
+		computed: {
+			bodyIndex(){
+				return this.index + 1;
+			},
+			maskIndex(){
+				return this.index;
+			}
+		},
         props: {
+			index: {
+				type: Number,
+				default: 1000
+			},
         	title: {
         		type: String,
         		default: '标题'
@@ -56,8 +68,10 @@
 
         		if(val){
         			this.$emit('on-show');
+					document.body.style.overflow = 'hidden';
         		}else{
         			this.$emit('on-hide');
+					document.body.style.overflow = 'visible';
         		}
         	}
         },
@@ -110,9 +124,6 @@
 	.slide-leave-active{
 		transform: translateX(100%);
 	}
-	.wrap{
-
-	}
 	.title-text{
 		height: 34px;
 		line-height: 34px;
@@ -124,12 +135,10 @@
 		bottom: 0;
 		left: 0;
 		background-color: rgba(0, 0, 0, 0.3);
-		z-index: 1000000;
 	}
 	.main{
 		position: fixed;
 	    background-color: #fff;
-	    z-index: 10000000;
 	    top: 0;
 	    right: 0;
 	    bottom: 0;
