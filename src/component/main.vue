@@ -6,11 +6,10 @@
 		<transition name="slide">
 			<div class="main" v-show="isShow" :style="{'width': width, 'z-index': bodyIndex}">
 				<div class="head clearfix">
-					<div class="pull-left title-text">{{title}}</div>
-					<button class="btn btn-default pull-right" @click="hide">取消</button>
+					<slot name="head"></slot>
 				</div>
 				<div class="body">
-					<slot></slot>
+					<slot name="body"></slot>
 				</div>
 			</div>
 		</transition>
@@ -22,7 +21,7 @@
         name: '',
         data(){
             return {
-            	isShow: this.value
+            	isShow: this.show
             };
         },
 		computed: {
@@ -38,10 +37,6 @@
 				type: Number,
 				default: 1000
 			},
-        	title: {
-        		type: String,
-        		default: '标题'
-        	},
         	width: {
         		type: String,
         		default: '80%'
@@ -54,18 +49,16 @@
         		type: Boolean,
         		default: false
         	},
-        	value: {
+        	show: {
         		type: Boolean,
         		default: false
         	}
         },
         watch: {
-        	value(val){
+        	show(val){
         		this.isShow = val;
         	},
         	isShow(val){
-        		this.$emit('input', val);
-
         		if(val){
         			this.$emit('on-show');
 					document.body.style.overflow = 'hidden';
@@ -83,24 +76,6 @@
         	},
         	hide(){
         		this.isShow = false;
-        	},
-        	beforeEnter(el){
-        		el.style.transform = 'translateX(100%)';
-        		el.style.transition = '1s';
-        	},
-        	enter(el, done){
-        		el.style.transform = 'translateX(0)';
-        		el.addEventListener('transitionend', function(){
-        			done();
-        		})
-        	},
-        	afterEnter(){
-        		this.$emit('on-show')
-        	},
-        	leave(el, done){
-        		el.style.transform = 'translateX(100%)';
-        		el.style.transition = this.time;
-        		done();
         	}
         }
     };
@@ -118,12 +93,13 @@
 		opacity: 0;
 		transition: .6s;
 	}
-	.slide-enter{
+	.slide-enter-active, .slide-leave-active{
+		transition: 0.6s linear;
+	}
+	.slide-enter, .slide-leave-active{
 		transform: translateX(100%);
 	}
-	.slide-leave-active{
-		transform: translateX(100%);
-	}
+	
 	.title-text{
 		height: 34px;
 		line-height: 34px;
@@ -144,7 +120,6 @@
 	    bottom: 0;
 	    padding: 0px;
 	    box-shadow: 0 0 40px -10px #000;
-	    transition: .6s;
 	}
 	.head {
 	    border-bottom: 1px #ddd solid;
@@ -174,4 +149,3 @@
 		background-color: rgba(0,0,0,.04);
 	}
 </style>
-
