@@ -6,7 +6,14 @@
 		<transition name="slide">
 			<div class="main" v-show="isShow" :style="{'width': width, 'z-index': bodyIndex}">
 				<div class="head clearfix">
-					<slot name="head"></slot>
+					<slot name="head">
+						<div class="slide-flex">
+							<div>{{title}}</div>
+							<div class="slide-flex-1">
+								<button class="btn btn-sm btn-default pull-right" @click="isShow = false">关闭</button>
+							</div>
+						</div>
+					</slot>
 				</div>
 				<div class="body">
 					<slot name="body"></slot>
@@ -49,16 +56,22 @@
         		type: Boolean,
         		default: false
         	},
-        	show: {
+        	value: {
         		type: Boolean,
         		default: false
-        	}
+			},
+			title: {
+				type: String,
+				default: '标题'
+			}
         },
         watch: {
-        	show(val){
+        	value(val){
         		this.isShow = val;
         	},
         	isShow(val){
+				this.$emit('input', val);
+
         		if(val){
         			this.$emit('on-show');
 					document.body.style.overflow = 'hidden';
@@ -87,14 +100,14 @@
 		opacity: 0;
 	}
 	.fade-enter-active{
-		transition: .6s;
+		transition: 0.3s;
 	}
 	.fade-leave-active{
 		opacity: 0;
-		transition: .6s;
+		transition: 0.3s;
 	}
 	.slide-enter-active, .slide-leave-active{
-		transition: 0.6s linear;
+		transition: 0.3s linear;
 	}
 	.slide-enter, .slide-leave-active{
 		transform: translateX(100%);
@@ -124,13 +137,13 @@
 	.head {
 	    border-bottom: 1px #ddd solid;
 	    padding: 5px 15px;
-	    margin-bottom: 10px;
 	    font-size: 14px;
 	    color: #888;
+		min-height: 45px;
 	}
 	.body{
 		position: absolute;
-		top: 55px;
+		top: 45px;
 		right: 0;
 		bottom: 0;
 		left: 0;
@@ -147,5 +160,12 @@
 	}
 	.body::-webkit-scrollbar-track-piece{
 		background-color: rgba(0,0,0,.04);
+	}
+	.slide-flex{
+		display: flex;
+		align-items: center;
+	}
+	.slide-flex-1{
+		flex: 1;
 	}
 </style>

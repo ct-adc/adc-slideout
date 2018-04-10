@@ -17,8 +17,9 @@
   <div>
     <button type="button" class="btn btn-success" @click="isShow1 = true">点一点，让世界更美好</button>
   </div>
-  <slide v-model="isShow1" hide-on-blur width="50%" @on-show="show1">
-    <form class="form-horizontal">
+  <slide v-model="isShow1" hide-on-blur width="50%" @on-show="show1" title="111" :isLoading="true">
+    <div slot="head">1123213</div>
+    <form class="form-horizontal" slot="body">
       <div class="form-group form-group-sm" v-for="item in 20">
           <label class="control-label col-sm-2">
               <i class="red">*</i> 游戏名称：

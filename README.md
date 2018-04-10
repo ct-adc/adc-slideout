@@ -2,12 +2,6 @@
 
 从右侧滑出操作层，用于编辑/查看 详情
 
-## 在线demo
-
-无
-
-马上有了！
-
 ## 使用
 
 从npm安装ct-adc-slideout
@@ -47,6 +41,14 @@ index | 层级 | number | 1000 | | 遮罩层的z-index|
 title | 标题 | string | 标题 | | |
 width | 宽度 | string | 50% | | |
 hide-on-blur |  | boolean | false | |点击遮罩层是否关闭弹出层|
+
+##插槽
+
+名称 | 描述 | 
+--- | --- 
+head | 头部的插槽 |
+body | 内容的插槽 | 
+
 
 ## 事件
 
