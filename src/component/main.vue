@@ -119,11 +119,11 @@
 	    right: 0;
 	    bottom: 0;
 	    padding: 0px;
-	    box-shadow: 0 0 40px -10px #000;
+	    /* box-shadow: 0 0 40px -10px #000; */
 	}
 	.head {
 	    border-bottom: 1px #ddd solid;
-	    padding: 10px 15px;
+	    padding: 5px 15px;
 	    margin-bottom: 10px;
 	    font-size: 14px;
 	    color: #888;
