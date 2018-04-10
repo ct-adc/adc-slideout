@@ -42,7 +42,7 @@ title | 标题 | string | 标题 | | |
 width | 宽度 | string | 50% | | |
 hide-on-blur |  | boolean | false | |点击遮罩层是否关闭弹出层|
 
-##插槽
+## 插槽
 
 名称 | 描述 | 
 --- | --- 
