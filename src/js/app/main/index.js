@@ -12,9 +12,10 @@ new Vue({
 	},
 	methods: {
 		save1(){
-			setTimeout(() => {
-				this.isShow1 = false;
-			}, 1000)
+			// setTimeout(() => {
+			// 	this.isShow1 = false;
+			// }, 1000)
+			this.$refs.slideout.scrollTo(100);
 		},
 		show1(){
 			setTimeout(() => {

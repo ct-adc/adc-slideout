@@ -1,11 +1,11 @@
 <template>
 	<div>
 		<transition name="fade">
-			<div class="mask" @click="clickMask" v-show="isShow" :style="{'z-index': maskIndex}"></div>
+			<div class="slide-mask" @click="clickMask" v-show="isShow" :style="{'z-index': maskIndex}"></div>
 		</transition>
 		<transition name="slide" @after-enter="afterEnter" @after-leave="afterLeave">
-			<div class="main" v-show="isShow" :style="{'width': width, 'z-index': bodyIndex}">
-				<div class="head clearfix">
+			<div class="slide-main" v-show="isShow" :style="{'width': width, 'z-index': bodyIndex}">
+				<div class="slide-head clearfix">
 					<slot name="head">
 						<div class="slide-flex">
 							<div>{{title}}</div>
@@ -15,7 +15,7 @@
 						</div>
 					</slot>
 				</div>
-				<div class="body">
+				<div class="slide-body" id="slide-body">
 					<slot name="body"></slot>
 				</div>
 			</div>
@@ -95,6 +95,9 @@
 			},
 			afterEnter(){
 				this.$emit('on-after-enter');
+			},
+			scrollTo(axisY){
+				document.getElementById('slide-body').scrollTop = axisY || 0;
 			}
         }
     };
@@ -118,12 +121,7 @@
 	.slide-enter, .slide-leave-active{
 		transform: translateX(100%);
 	}
-	
-	.title-text{
-		height: 34px;
-		line-height: 34px;
-	}
-	.mask{
+	.slide-mask{
 		position: fixed;
 		top: 0;
 		right: 0;
@@ -131,7 +129,7 @@
 		left: 0;
 		background-color: rgba(0, 0, 0, 0.3);
 	}
-	.main{
+	.slide-main{
 		position: fixed;
 	    background-color: #fff;
 	    top: 0;
@@ -140,14 +138,14 @@
 	    padding: 0px;
 	    box-shadow: 0 0 20px -10px #000;
 	}
-	.head {
+	.slide-head {
 	    border-bottom: 1px #ddd solid;
 	    padding: 5px 15px;
 	    font-size: 14px;
 	    color: #888;
 		min-height: 45px;
 	}
-	.body{
+	.slide-body{
 		position: absolute;
 		top: 45px;
 		right: 0;
@@ -156,15 +154,15 @@
 		overflow-y: scroll;
 		padding: 10px 15px;
 	}
-	.body::-webkit-scrollbar{
+	.slide-body::-webkit-scrollbar{
 		width: 6px;
 		height: 6px;
 		
 	}
-	.body::-webkit-scrollbar-thumb, .body::-webkit-scrollbar-thumb:horizontal, .body::-webkit-scrollbar-thumb:vertical{
+	.slide-body::-webkit-scrollbar-thumb, .body::-webkit-scrollbar-thumb:horizontal, .body::-webkit-scrollbar-thumb:vertical{
 		background-color: #dbd6cd;
 	}
-	.body::-webkit-scrollbar-track-piece{
+	.slide-body::-webkit-scrollbar-track-piece{
 		background-color: rgba(0,0,0,.04);
 	}
 	.slide-flex{

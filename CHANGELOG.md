@@ -1,5 +1,9 @@
 ## 更新日志
 
+### v1.1.4
+
+- 新增scrollTo方法
+
 ### v1.1.3
 
 - 新增on-after-show和on-after-hide事件

@@ -59,6 +59,12 @@ on-after-show |  |  | 完全显示时的事件
 on-hide |  |  | 隐藏时的事件
 on-after-hide |  |  | 完全隐藏时的事件
 
+## 方法
+
+方法名称 | 参数 | 必填 | 参数类型 | 描述
+--- | --- | --- | --- | ---
+scrollTo(axisY) | axisY | 否 | Number |控制内容滚动的位置，不填则回到顶部
+
 ## 更新日志
 
 [更新日志](https://github.com/ct-adc/adc-slideout/blob/master/CHANGELOG.md)
