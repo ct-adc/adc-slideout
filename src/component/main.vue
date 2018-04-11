@@ -3,7 +3,7 @@
 		<transition name="fade">
 			<div class="mask" @click="clickMask" v-show="isShow" :style="{'z-index': maskIndex}"></div>
 		</transition>
-		<transition name="slide">
+		<transition name="slide" @after-enter="afterEnter" @after-leave="afterLeave">
 			<div class="main" v-show="isShow" :style="{'width': width, 'z-index': bodyIndex}">
 				<div class="head clearfix">
 					<slot name="head">
@@ -89,7 +89,13 @@
         	},
         	hide(){
         		this.isShow = false;
-        	}
+			},
+			afterLeave(){
+				this.$emit('on-after-leave');
+			},
+			afterEnter(){
+				this.$emit('on-after-enter');
+			}
         }
     };
 </script>
@@ -100,14 +106,14 @@
 		opacity: 0;
 	}
 	.fade-enter-active{
-		transition: 0.3s;
+		transition: 0.4s;
 	}
 	.fade-leave-active{
 		opacity: 0;
-		transition: 0.3s;
+		transition: 0.4s;
 	}
 	.slide-enter-active, .slide-leave-active{
-		transition: 0.3s linear;
+		transition: 0.4s;
 	}
 	.slide-enter, .slide-leave-active{
 		transform: translateX(100%);
@@ -132,7 +138,7 @@
 	    right: 0;
 	    bottom: 0;
 	    padding: 0px;
-	    /* box-shadow: 0 0 40px -10px #000; */
+	    box-shadow: 0 0 20px -10px #000;
 	}
 	.head {
 	    border-bottom: 1px #ddd solid;

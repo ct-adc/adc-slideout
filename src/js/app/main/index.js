@@ -20,6 +20,12 @@ new Vue({
 			setTimeout(() => {
 				this.input1 = '玛丽吗卡卡阿卡卡卡卡';
 			}, 1000)
+		},
+		afterEnter(){
+			alert('enter')
+		},
+		afterLeave(){
+			alert('leave')
 		}
 	}
 })

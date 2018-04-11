@@ -1,5 +1,9 @@
 ## 更新日志
 
+### v1.1.3
+
+- 新增on-after-show和on-after-hide事件
+
 ### v1.1.1
 
 - 修改了样式
