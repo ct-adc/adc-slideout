@@ -17,7 +17,7 @@
   <div>
     <button type="button" class="btn btn-success" @click="isShow1 = true">点一点，让世界更美好</button>
   </div>
-  <slide ref="slideout" v-model="isShow1" hide-on-blur width="50%" @on-show="show1" @on-after-enter="afterEnter" @on-after-leave="afterLeave" title="111" :isLoading="true">
+  <slide ref="slideout" is-transparent v-model="isShow1" hide-on-blur width="50%" @on-show="show1" @on-after-enter="afterEnter" @on-after-leave="afterLeave" title="111" :isLoading="true">
     <div slot="head">1123213</div>
     <form class="form-horizontal" slot="body">
       <div class="form-group form-group-sm" v-for="item in 20">

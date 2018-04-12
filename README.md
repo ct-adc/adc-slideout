@@ -41,6 +41,7 @@ index | 层级 | number | 1000 | | 遮罩层的z-index|
 title | 标题 | string | 标题 | | |
 width | 宽度 | string | 50% | | |
 hide-on-blur |  | boolean | false | |点击遮罩层是否关闭弹出层|
+is-transparent |	| boolean | false | | 背景是否透明 |
 
 ## 插槽
 
@@ -57,7 +58,7 @@ body | 内容的插槽 |
 on-show |  |  | 显示时的事件
 on-after-show |  |  | 完全显示时的事件
 on-hide |  |  | 隐藏时的事件
-on-after-hide |  |  | 完全隐藏时的事件
+on-after-hide |  |  | 完全隐藏时的事件	
 
 ## 方法
 

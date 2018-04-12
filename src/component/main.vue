@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<transition name="fade">
-			<div class="slide-mask" @click="clickMask" v-show="isShow" :style="{'z-index': maskIndex}"></div>
+			<div class="slide-mask" :class="{'is-transparent': isTransparent}" @click="clickMask" v-show="isShow" :style="{'z-index': maskIndex}"></div>
 		</transition>
 		<transition name="slide" @after-enter="afterEnter" @after-leave="afterLeave">
 			<div class="slide-main" v-show="isShow" :style="{'width': width, 'z-index': bodyIndex}">
@@ -48,10 +48,6 @@
         		type: String,
         		default: '80%'
         	},
-        	time: {
-        		type: Number,
-        		default: 1000
-        	},
         	hideOnBlur: {
         		type: Boolean,
         		default: false
@@ -63,6 +59,10 @@
 			title: {
 				type: String,
 				default: '标题'
+			},
+			isTransparent: {
+				type: Boolean,
+				default: false
 			}
         },
         watch: {
@@ -71,13 +71,16 @@
         	},
         	isShow(val){
 				this.$emit('input', val);
-
         		if(val){
-        			this.$emit('on-show');
-					document.body.style.overflow = 'hidden';
+        			this.$nextTick(() => {
+						this.$emit('on-show');
+						document.body.style.overflow = 'hidden';
+					});
         		}else{
-        			this.$emit('on-hide');
-					document.body.style.overflow = 'visible';
+					this.$nextTick(() => {
+						this.$emit('on-hide');
+						document.body.style.overflow = 'visible';
+					});
         		}
         	}
         },
@@ -91,10 +94,10 @@
         		this.isShow = false;
 			},
 			afterLeave(){
-				this.$emit('on-after-leave');
+				this.$emit('on-after-hide');
 			},
 			afterEnter(){
-				this.$emit('on-after-enter');
+				this.$emit('on-after-show');
 			},
 			scrollTo(axisY){
 				document.getElementById('slide-body').scrollTop = axisY || 0;
@@ -127,7 +130,10 @@
 		right: 0;
 		bottom: 0;
 		left: 0;
-		background-color: rgba(0, 0, 0, 0.3);
+		background-color: rgba(0,0,0,0.3);
+	}
+	.slide-mask.is-transparent{
+		opacity: 0;
 	}
 	.slide-main{
 		position: fixed;
