@@ -18,9 +18,7 @@ new Vue({
 			this.$refs.slideout.scrollTo(100);
 		},
 		show1(){
-			setTimeout(() => {
-				this.input1 = '玛丽吗卡卡阿卡卡卡卡';
-			}, 1000)
+
 		},
 		afterEnter(){
 			alert('enter')

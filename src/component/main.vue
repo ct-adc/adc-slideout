@@ -5,17 +5,17 @@
 		</transition>
 		<transition name="slide" @after-enter="afterEnter" @after-leave="afterLeave">
 			<div class="slide-main" v-show="isShow" :style="{'width': width, 'z-index': bodyIndex}">
-				<div class="slide-head clearfix">
+				<div class="slide-head clearfix" id="slide-head" :style="{height: headHeight+'px'}">
 					<slot name="head">
 						<div class="slide-flex">
 							<div>{{title}}</div>
 							<div class="slide-flex-1">
-								<button class="btn btn-sm btn-default pull-right" @click="isShow = false">关闭</button>
+								<button class="btn btn-sm btn-default btn-sm pull-right" @click="isShow = false">关闭</button>
 							</div>
 						</div>
 					</slot>
 				</div>
-				<div class="slide-body" id="slide-body">
+				<div class="slide-body" id="slide-body" :style="{top: headHeight+'px'}">
 					<slot name="body"></slot>
 				</div>
 			</div>
@@ -28,7 +28,8 @@
         name: '',
         data(){
             return {
-            	isShow: this.show
+				isShow: this.show,
+				headHeight: ''
             };
         },
 		computed: {
@@ -73,6 +74,7 @@
 				this.$emit('input', val);
         		if(val){
         			this.$nextTick(() => {
+						this.headHeight = this.$el.querySelector('#slide-head').getBoundingClientRect().height;
 						this.$emit('on-show');
 						document.body.style.overflow = 'hidden';
 					});
@@ -102,7 +104,7 @@
 			scrollTo(axisY){
 				document.getElementById('slide-body').scrollTop = axisY || 0;
 			}
-        }
+		}
     };
 </script>
 
@@ -149,11 +151,10 @@
 	    padding: 5px 15px;
 	    font-size: 14px;
 	    color: #888;
-		min-height: 45px;
 	}
 	.slide-body{
 		position: absolute;
-		top: 45px;
+		top: 41px;
 		right: 0;
 		bottom: 0;
 		left: 0;
